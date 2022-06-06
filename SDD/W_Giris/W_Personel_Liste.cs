@@ -16,7 +16,7 @@ namespace W_Giris
         {
             InitializeComponent();
         }
-
+        Tools tools = new Tools();
         SqlConnection Baglanti = new SqlConnection("Server=localhost;Database=SDD;Trusted_Connection=True;");
         private void W_Personel_Liste_Load(object sender, EventArgs e)
         {
@@ -25,11 +25,10 @@ namespace W_Giris
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             string arananPersonel = txtPersonel_Ad.Text;
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Personel where Ad like '%"+arananPersonel+"%' ", Baglanti);
-            DataTable dataTable = new DataTable();
-            dataAdapter.Fill(dataTable);
-            dataGridView1.DataSource = dataTable;
+            tools.FiltreListele(arananPersonel,"Personel");
+            dataGridView1.DataSource = tools.FiltreListele(arananPersonel,"personel");
             dataGridView1.Columns["Aktiflik"].Visible = false;
             dataGridView1.Columns["PasifTarih"].Visible = false;
 
@@ -45,19 +44,18 @@ namespace W_Giris
 
         private void silToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow!=null)
+            if (dataGridView1.CurrentRow != null)
             {
-                SqlCommand komut = new SqlCommand("delete from Personel where Id =@personelId",Baglanti);
-                komut.Parameters.AddWithValue("@personelId", dataGridView1.CurrentRow.Cells["Id"].Value);
-                Baglanti.Open();
-                int sayac = komut.ExecuteNonQuery();
-                Baglanti.Close();
-                if (sayac>0)
-                {
-                    MessageBox.Show("Kayıt Silinmiştir.");
-                }
+
+                object referans = dataGridView1.CurrentRow.Cells["Id"].Value;
+                tools.PersonelSil(referans,"Personel");
+                dataGridView1.DataSource = tools.Listele("Personel");
+                
+
+                
 
             }
+            
         }
     }
 }
