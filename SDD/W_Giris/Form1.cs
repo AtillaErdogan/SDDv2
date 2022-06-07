@@ -17,22 +17,22 @@ namespace W_Giris
         {
             InitializeComponent();
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
+            
+            
             string kullaniciAdi = txtKullaniciAdi.Text;
             string sifre = txtSifre.Text;
             tools.Giris(kullaniciAdi,sifre);
+            
             
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             
-            tools.Listele("Personel");
-            dataGridView1.DataSource = tools.Listele("Kullanici");
-            dataGridView1.Columns["Aktiflik"].Visible = false;
-            dataGridView1.Columns["PasifTarih"].Visible = false;
+            
         }
     }
 }

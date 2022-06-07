@@ -17,11 +17,21 @@ namespace W_Giris
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void personelEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             W_Personel_Kayıt personelKayıt = new W_Personel_Kayıt();
             personelKayıt.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void personelListeleSilToolStripMenuItem_Click(object sender, EventArgs e)
         {
             W_Personel_Liste personelListe = new W_Personel_Liste();
             personelListe.Show();
